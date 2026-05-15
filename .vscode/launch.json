@@ -1,0 +1,122 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Debug Eureka",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/eureka",
+      "mainClass": "cl.factogames.eureka.TiendaEurekaApplication",
+      "projectName": "cl-factogames-eureka",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Debug ms-catalogo",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/ms-catalogo",
+      "mainClass": "cl.factogames.catalogo.TiendaCatalogoApplication",
+      "projectName": "cl-factogames-catalogo",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Debug ms-usuarios",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/ms-usuarios",
+      "mainClass": "cl.factogames.usuarios.TiendaUsuariosApplication",
+      "projectName": "cl-factogames-usuarios",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Debug ms-carrito",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/ms-carrito",
+      "mainClass": "cl.factogames.carrito.TiendaCarritoApplication",
+      "projectName": "cl-factogames-carrito",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Debug ms-pedidos",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/ms-pedidos",
+      "mainClass": "cl.factogames.pedidos.TiendaPedidosApplication",
+      "projectName": "cl-factogames-pedidos",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Debug ms-pagos",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/ms-pagos",
+      "mainClass": "cl.factogames.pagos.TiendaPagosApplication",
+      "projectName": "cl-factogames-pagos",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Debug ms-inventario",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/ms-inventario",
+      "mainClass": "cl.factogames.inventario.TiendaInventarioApplication",
+      "projectName": "cl-factogames-inventario",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Debug ms-resenas",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/ms-resenas",
+      "mainClass": "cl.factogames.resenas.TiendaResenasApplication",
+      "projectName": "cl-factogames-resenas",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Debug ms-notificaciones",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/ms-notificaciones",
+      "mainClass": "cl.factogames.notificaciones.TiendaNotificacionesApplication",
+      "projectName": "cl-factogames-notificaciones",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Debug ms-promociones",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/ms-promociones",
+      "mainClass": "cl.factogames.promociones.TiendaPromocionesApplication",
+      "projectName": "cl-factogames-promociones",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Debug ms-biblioteca",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/ms-biblioteca",
+      "mainClass": "cl.factogames.biblioteca.TiendaBibliotecaApplication",
+      "projectName": "cl-factogames-biblioteca",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Debug All Services",
+      "configurations": [
+        "Debug Eureka",
+        "Debug ms-catalogo",
+        "Debug ms-usuarios",
+        "Debug ms-carrito",
+        "Debug ms-pedidos",
+        "Debug ms-pagos",
+        "Debug ms-inventario",
+        "Debug ms-resenas",
+        "Debug ms-notificaciones",
+        "Debug ms-promociones",
+        "Debug ms-biblioteca"
+      ]
+    }
+  ]
+}
