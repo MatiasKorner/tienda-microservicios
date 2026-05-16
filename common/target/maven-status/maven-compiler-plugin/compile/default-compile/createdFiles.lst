@@ -1,7 +1,0 @@
-cl\factogames\common\exception\DuplicateResourceException.class
-cl\factogames\common\exception\EntityNotFoundException.class
-cl\factogames\common\exception\ReferentialIntegrityException.class
-cl\factogames\common\CommonAutoConfiguration.class
-cl\factogames\common\exception\GlobalExceptionHandler.class
-cl\factogames\common\exception\ApiError.class
-cl\factogames\common\exception\ApiError$ApiErrorBuilder.class

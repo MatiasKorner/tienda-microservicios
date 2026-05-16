@@ -9,7 +9,5 @@ public class PedidoResponse {
     private LocalDateTime fechaPedido;
     private Double totalVenta;
     private String codigoSeguimiento;
-    
-
 
 }
