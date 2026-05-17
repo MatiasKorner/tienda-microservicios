@@ -19,7 +19,7 @@ public class Rol {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nombreRol", nullable = false, length = 50)
+    @Column(name = "nombre", nullable = false, length = 50)
     private String nombreRol;
 
     @Column(name = "descripcion", length = 100)
