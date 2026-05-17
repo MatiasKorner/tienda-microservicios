@@ -7,10 +7,12 @@ import org.springframework.stereotype.Service;
 
 import cl.factogames.pedidos.dto.PedidoRequest;
 import cl.factogames.pedidos.dto.PedidoResponse;
+import cl.factogames.pedidos.dto.StockProductoResponse;
 import cl.factogames.common.exception.*;
 import cl.factogames.pedidos.mapper.PedidoMapper;
 import cl.factogames.pedidos.model.Pedido;
 import cl.factogames.pedidos.repository.PedidoRepository;
+import cl.factogames.pedidos.client.InventarioClient;
 import cl.factogames.pedidos.client.UsuarioClient;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,7 @@ public class PedidoService {
     private final PedidoRepository pedidoRepository;
     private final PedidoMapper pedidoMapper;
     private final UsuarioClient usuarioClient;
+    private final InventarioClient inventarioClient;
 
     public List<PedidoResponse> findAll() {
         return pedidoMapper.toResponseList(pedidoRepository.findAll());
@@ -41,18 +44,32 @@ public class PedidoService {
     }
 
     @Transactional
-    public PedidoResponse create(PedidoRequest request) {
+public PedidoResponse create(PedidoRequest request) {
 
-        usuarioClient.findById(request.getIdUsuario());
-        
-        Pedido pedido = new Pedido();
-        pedidoMapper.updateEntity(request, pedido);
-        
-        // Lógica adicional para creación de pedido
-        pedido.setCodigoSeguimiento(generarCodigoUnico());
-        
-        return pedidoMapper.toResponse(pedidoRepository.save(pedido));       
+    usuarioClient.findById(request.getIdUsuario());
+
+    List<StockProductoResponse> stocks =
+            inventarioClient.findByIdJuego(request.getIdVideojuego());
+
+    if (stocks.isEmpty()) {
+        throw new RuntimeException("No existe stock para el videojuego");
     }
+
+    boolean stockDisponible = stocks.stream()
+            .anyMatch(stock -> stock.getCantidad() >= request.getCantidad());
+
+    if (!stockDisponible) {
+        throw new RuntimeException("Stock insuficiente");
+    }
+
+    Pedido pedido = new Pedido();
+    pedidoMapper.updateEntity(request, pedido);
+
+    // Lógica adicional para creación de pedido
+    pedido.setCodigoSeguimiento(generarCodigoUnico());
+
+    return pedidoMapper.toResponse(pedidoRepository.save(pedido));
+}
 
     @Transactional
     public PedidoResponse update(Integer id, PedidoRequest request) {
