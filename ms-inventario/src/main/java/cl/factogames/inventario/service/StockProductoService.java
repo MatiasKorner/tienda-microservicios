@@ -1,6 +1,7 @@
 package cl.factogames.inventario.service;
 
 import cl.factogames.common.exception.EntityNotFoundException;
+import cl.factogames.inventario.client.VideojuegoClient;
 import cl.factogames.inventario.dto.StockProductoRequest;
 import cl.factogames.inventario.dto.StockProductoResponse;
 import cl.factogames.inventario.mapper.StockProductoMapper;
@@ -12,6 +13,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
 
 @Service
@@ -21,6 +23,7 @@ public class StockProductoService {
     private final StockProductoRepository stockProductoRepository;
     private final AlmacenRepository almacenRepository;
     private final StockProductoMapper stockProductoMapper;
+    private final VideojuegoClient videojuegoClient;
 
     public List<StockProductoResponse> findAll() {
         return stockProductoMapper.toResponseList(stockProductoRepository.findAll());
@@ -40,6 +43,9 @@ public class StockProductoService {
 
     @Transactional
     public StockProductoResponse create(StockProductoRequest request) {
+
+        videojuegoClient.findById(request.getIdJuego());
+
         Almacen almacen = getAlmacenById(request.getIdAlmacen());
 
         StockProducto stockProducto = stockProductoMapper.toEntity(request);

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
+import cl.factogames.pagos.client.PedidoClient;
 
 import cl.factogames.common.exception.EntityNotFoundException;
 import cl.factogames.pagos.dto.TransaccionRequest;
@@ -26,6 +27,7 @@ public class TransaccionService {
     private final MetodoPagoRepository metodoPagoRepository;
     private final EstadoPagoRepository estadoPagoRepository;
     private final TransaccionMapper transaccionMapper;
+    private final PedidoClient pedidoClient;
 
     public List<TransaccionResponse> findAll() {
         return transaccionMapper.toResponseList(transaccionRepository.findAll());
@@ -43,8 +45,10 @@ public class TransaccionService {
     @Transactional
     public TransaccionResponse create(TransaccionRequest request) {
 
-        Transaccion transaccion = new Transaccion();
+        pedidoClient.findById(request.getIdPedido());
 
+        Transaccion transaccion = new Transaccion();
+       
         // Mapea campos simples
         transaccionMapper.updateEntity(request, transaccion);
 
