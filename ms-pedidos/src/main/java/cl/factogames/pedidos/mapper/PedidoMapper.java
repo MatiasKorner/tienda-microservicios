@@ -20,6 +20,7 @@ public interface PedidoMapper {
     @Mapping(target = "detalles", ignore = true)
     Pedido toEntity(PedidoRequest request);
 
+    @Mapping(source = "estado.nombre", target = "estado")
     PedidoResponse toResponse(Pedido pedido);
 
     List<PedidoResponse> toResponseList(List<Pedido> pedidos);

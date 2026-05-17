@@ -11,8 +11,10 @@ import cl.factogames.common.exception.*;
 import cl.factogames.pedidos.mapper.PedidoMapper;
 import cl.factogames.pedidos.model.Pedido;
 import cl.factogames.pedidos.repository.PedidoRepository;
+import cl.factogames.pedidos.client.UsuarioClient;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +22,7 @@ public class PedidoService {
 
     private final PedidoRepository pedidoRepository;
     private final PedidoMapper pedidoMapper;
+    private final UsuarioClient usuarioClient;
 
     public List<PedidoResponse> findAll() {
         return pedidoMapper.toResponseList(pedidoRepository.findAll());
@@ -39,13 +42,16 @@ public class PedidoService {
 
     @Transactional
     public PedidoResponse create(PedidoRequest request) {
+
+        usuarioClient.findById(request.getIdUsuario());
+        
         Pedido pedido = new Pedido();
         pedidoMapper.updateEntity(request, pedido);
         
         // Lógica adicional para creación de pedido
         pedido.setCodigoSeguimiento(generarCodigoUnico());
         
-        return pedidoMapper.toResponse(pedidoRepository.save(pedido));
+        return pedidoMapper.toResponse(pedidoRepository.save(pedido));       
     }
 
     @Transactional

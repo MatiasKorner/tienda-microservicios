@@ -8,10 +8,10 @@ import java.time.LocalDate;
 @Table(
     name = "perfiles",
     uniqueConstraints = {
-        @UniqueConstraint(name = "uk_perfil_usuario_email", columnNames = "usuario_email")
+        @UniqueConstraint(name = "uk_perfil_usuario", columnNames = "id_usuario")
     },
     indexes = {
-        @Index(name = "idx_perfiles_usuario_email", columnList = "usuario_email")
+        @Index(name = "idx_perfiles_usuario", columnList = "id_usuario")
     }
 )
 @Getter
@@ -32,7 +32,7 @@ public class Perfil {
     private String apellido;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "usuario_email", referencedColumnName = "email", nullable = false)
+    @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
     @Column(name = "fecha_nacimiento")
