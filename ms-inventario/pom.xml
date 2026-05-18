@@ -130,10 +130,6 @@
             <artifactId>spring-kafka</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>cl.factogames</groupId>
-            <artifactId>cl-factogames-common</artifactId>
-        </dependency>
 
     </dependencies>
 

@@ -3,6 +3,7 @@ package cl.factogames.inventario.event;
 import cl.factogames.common.events.VideojuegoEvent;
 import cl.factogames.inventario.model.VideojuegoProyeccion;
 import cl.factogames.inventario.repository.VideojuegoProyeccionRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -12,9 +13,12 @@ import org.springframework.stereotype.Service;
 public class VideojuegoEventConsumer {
 
     private final VideojuegoProyeccionRepository videojuegoProyeccionRepository;
+    private final ObjectMapper objectMapper;
 
     @KafkaListener(topics = "videojuegos-topic", groupId = "factogames-group")
-    public void consumirEvento(VideojuegoEvent event) {
+    public void consumirEvento(String mensaje) throws Exception {
+
+        VideojuegoEvent event = objectMapper.readValue(mensaje, VideojuegoEvent.class);
 
         String id = String.valueOf(event.getIdVideojuego());
 
