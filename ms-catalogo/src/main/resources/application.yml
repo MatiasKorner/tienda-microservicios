@@ -6,6 +6,18 @@ server:
 spring:
   application:
     name: ms-catalogo
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: factogames-group
+      auto-offset-reset: earliest
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    properties:
+      spring.json.trusted.packages: "*"
+
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5433/catalogo
@@ -28,3 +40,5 @@ eureka:
     instance-id: "${spring.application.name}:${random.value}"
     lease-renewal-interval-in-seconds: 15
     lease-expiration-duration-in-seconds: 60
+
+    
