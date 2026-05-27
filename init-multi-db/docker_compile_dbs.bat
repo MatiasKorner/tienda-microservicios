@@ -1,0 +1,11 @@
+docker exec -i postgres_rdbms psql -U postgres -d main_postgres_db < 01-init.sql
+docker exec -i postgres_rdbms psql -U postgres -d main_postgres_db < 02-create_usuarios.sql
+docker exec -i postgres_rdbms psql -U postgres -d main_postgres_db < 03-create_catalogo.sql
+docker exec -i postgres_rdbms psql -U postgres -d main_postgres_db < 04-create_carrito.sql
+docker exec -i postgres_rdbms psql -U postgres -d main_postgres_db < 05-create_pedidos.sql
+docker exec -i postgres_rdbms psql -U postgres -d main_postgres_db < 06-create_pagos.sql
+docker exec -i postgres_rdbms psql -U postgres -d main_postgres_db < 07-create_inventario.sql
+docker exec -i postgres_rdbms psql -U postgres -d main_postgres_db < 08-create_opinion.sql
+docker exec -i postgres_rdbms psql -U postgres -d main_postgres_db < 09-create_notificaciones.sql
+docker exec -i postgres_rdbms psql -U postgres -d main_postgres_db < 10-create_promociones.sql
+docker exec -i postgres_rdbms psql -U postgres -d main_postgres_db < 11-create_biblioteca.sql
